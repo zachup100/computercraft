@@ -1,2 +1,2 @@
-local reactor = peripheral.find("BigReactor-Reactor")
+local reactor = peripheral.find("BigReactors-Reactor")
 print(reactor~=nil)
