@@ -1,5 +1,5 @@
 function start_server()
-    sleep(3)
+    os.sleep(3)
     print("Hello!")
 end
 
