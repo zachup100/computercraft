@@ -1,4 +1,5 @@
 function start_server()
+    sleep(3)
     print("Hello!")
 end
 
