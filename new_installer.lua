@@ -1,5 +1,5 @@
-local params = {...}
-local Author = params[1]
-local Repo = params[2]
-if not Author or not Repo then error("Invalid repo") end
-print("good repo")
+local Index = {...}
+local Author = Index[1]
+local Repository = Index[2]
+local _Program = shell.getRunningProgram()
+if not Author or not Repository then print(string.format("%s", _Program)) end
