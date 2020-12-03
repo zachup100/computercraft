@@ -24,6 +24,7 @@ else
   term.setCursorPos(1,5)
   local Connection = http.get(string.format("https://api.github.com/repos/%s/%s/git/trees/master?recursive=1",Author,Repository))
   local Contents = json.parseValue(Connection.readAll())
+  if not Connection then error("Author or Repository does not exist.") end
   Connection.close()
   term.write("Writing GitHub Repository data to Computer...")
   term.setCursorPos(1,6)
