@@ -36,7 +36,7 @@ else
       Connection.close()
     end
   end
-  shell.run("delete", "temporary/")
+  fs.delete("temporary/")
   term.setCursorPos(1,Y-1)
   term.write("Finished downloading repository!")
   term.setCursorPos(1,Y)
