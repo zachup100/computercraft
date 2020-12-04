@@ -8,4 +8,4 @@ function GetModem()
   end
 end
 
-print(GetModem())
+print("Wirelss Modem:",GetModem())
