@@ -40,13 +40,15 @@ end
 
 term.setCursorPos(1,1)
 term.setBackgroundColor(colors.black)
-local returned = AddButton("test1",1,1,3,3, function() rednet.broadcast("stop_rain") end)
-print("got",returned)
+AddButton("test1",1,1,3,3, function() rednet.broadcast("stop_rain") end)
 
 while true do
   local Event, PosX, PosY = os.pullEvent("mouse_click")
   for Button, Data in pairs(Buttons) do
-    if WithinButton(Button, PosX, PosY) then
+    print("Clicked at X "..PosX.." Y "..PosY)
+    local Within = WithinButton(Button,PosX,PosY)
+    print("Withn:",Within)
+    if Within then
       Data.func()
     end
   end
