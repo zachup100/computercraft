@@ -12,4 +12,3 @@ function GetModem()
 end
 
 print("Found wireless modem port on \""..GetModem().."\"")
---// Come on GitHub, update faster please.
