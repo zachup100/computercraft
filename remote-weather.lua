@@ -11,5 +11,5 @@ function GetModem()
   end
 end
 
-print("Found wireless modem port on \""..GetModem().."\"")
+print("Found wireless modem port on \""..GetModem().."\"") 
 --// Come on GitHub, update faster please.
