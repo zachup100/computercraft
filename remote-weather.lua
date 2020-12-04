@@ -26,7 +26,7 @@ rednet.open(Modem)
 
 print("Started Listener.")
 while true do
-  Id, Message, Protocol = os.pullEvent("rednet_message")
+  Id, Message = rednet.receive()
   Message = string.lower(tostring(Message))
   print("Command received:",Message)
   if Message == "stop_rain" then

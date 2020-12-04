@@ -1,5 +1,6 @@
 local Height, Width = term.getSize()
 if Height ~= 26 or Width ~= 20 then error("This program can only run on a pocket computer.") end
+rednet.open("back")
 term.clear()
 
 local Buttons = {}
