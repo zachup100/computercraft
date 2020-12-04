@@ -44,12 +44,12 @@ term.setBackgroundColor(colors.gray)
 term.setCursorPos(3,4)
 for i=3,5 do
   term.setCursorPos(4,i)
-  term.write((" "):rep(Width-2))
+  term.write((" "):rep(Width))
 end
 
 term.setCursorPos(1,1)
 term.setBackgroundColor(colors.black)
-AddButton("test1",1,1,3,3, (function()
+AddButton("test1",4,3,Width,5, (function()
   print("Running function")
   rednet.send(REMOTE_ID,"stop_rain")
 end))
