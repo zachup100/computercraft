@@ -5,12 +5,13 @@ term.clear()
 local Buttons = {}
 
 function AddButton(Title,X,Y,MX,MY,func)
-  if type(func) ~= "function" then return end
+  if type(func) ~= "function" then return false, 1 end
   Title = tostring(Title)
-  if type(Buttons[Title]) ~= "nil" then return end
+  if type(Buttons[Title]) ~= "nil" then return false, 2 end
   X,Y,MX,MY = (tonumber(X) or 1),(tonumber(Y) or 1),(tonumber(MX) or 1),(tonumber(MY) or 1)
   local Data = {X=X,Y=Y,MX=MX,MY=MY,func=func}
   Buttons[Title] = Data
+  return true
 end
 
 function WithinButton(Title, X, Y)
