@@ -4,12 +4,12 @@ function GetModem()
     local Methods = peripheral.getMethods(Port)
     for _, func in pairs(Methods) do
       print(func)
-      if func == "isWireless" and func() == true then
+      if func == "isWireless" and Methods[func]() == true then
         return tostring(Port)
       end
     end
   end
 end
 
-print("Found wireless modem port on \""..GetModem().."\"") 
+print("Found wireless modem port on \""..GetModem().."\"")
 --// Come on GitHub, update faster please.
