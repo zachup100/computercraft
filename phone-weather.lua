@@ -40,7 +40,10 @@ end
 
 term.setCursorPos(1,1)
 term.setBackgroundColor(colors.black)
-AddButton("test1",1,1,3,3, (function() rednet.broadcast("stop_rain") end))
+AddButton("test1",1,1,3,3, (function()
+  print("Running function")
+  rednet.broadcast("stop_rain")
+end))
 
 while true do
   local Event, Button, PosX, PosY = os.pullEvent("mouse_click")
