@@ -4,6 +4,8 @@ term.clear()
 
 --// Draw
 
-
-term.setBackgroundColor(colors.lightBlue)
-term.write("     \n")
+term.setCursorPos(3,3)
+for i = 3, 24 do
+  term.setCursorPos(3,i)
+  term.write((" "):rep(16))
+end
