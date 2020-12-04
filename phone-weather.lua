@@ -3,7 +3,7 @@ if Height ~= 26 or Width ~= 20 then error("This program can only run on a pocket
 term.clear()
 
 --// Draw
-
+term.setBackgroundColor(colors.lightBlue)
 term.setCursorPos(3,3)
 for i = 3, 24 do
   term.setCursorPos(3,i)
