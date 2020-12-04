@@ -61,7 +61,7 @@ for i=7,9 do
   term.setCursorPos(4,i)
   term.write((" "):rep(Width))
 end
-term.setCursorPos((Width/2),9)
+term.setCursorPos((Width/2),8)
 term.write("Morning")
 
 term.setCursorPos(1,1)
@@ -77,7 +77,7 @@ for i=11,13 do
   term.setCursorPos(4,i)
   term.write((" "):rep(Width))
 end
-term.setCursorPos((Width/2),9)
+term.setCursorPos((Width/2),12)
 term.write("Goodnight")
 
 term.setCursorPos(1,1)
