@@ -50,7 +50,7 @@ term.write("Stop  Rain")
 
 term.setCursorPos(1,1)
 term.setBackgroundColor(colors.black)
-AddButton("test1",4,3,23,5, (function()
+AddButton("rain",4,3,23,5, (function()
   print("R")
   rednet.send(REMOTE_ID,"stop_rain")
 end))
@@ -61,12 +61,12 @@ for i=8,10 do
   term.setCursorPos(4,i)
   term.write((" "):rep(Width))
 end
-term.setCursorPos((Width/2)-1,9)
+term.setCursorPos((Width/1)-1,9)
 term.write("Morning")
 
 term.setCursorPos(1,1)
 term.setBackgroundColor(colors.black)
-AddButton("test1",4,8,23,10, (function()
+AddButton("morning",4,8,23,10, (function()
   print("R")
   rednet.send(REMOTE_ID,"morning")
 end))
