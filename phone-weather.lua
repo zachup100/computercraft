@@ -20,7 +20,6 @@ function WithinButton(Title, X, Y)
   Title = tostring(Title)
   if type(Buttons[Title]) == "nil" then return false end
   local Data = Buttons[Title]
-
   if X >= Data.X and Y >= Data.Y and X <= Data.MX and Y <= Data.MY then return true end
   return false
 end
@@ -44,7 +43,7 @@ end
 term.setBackgroundColor(colors.gray)
 term.setCursorPos(3,4)
 for i=3,5 do
-  term.setCursorPos(2,i)
+  term.setCursorPos(4,i)
   term.write((" "):rep(Width-2))
 end
 
