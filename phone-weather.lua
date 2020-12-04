@@ -36,6 +36,7 @@ for i=2,19,1 do
   term.write((" "):rep(Width+5))
 end
 
+term.setBackgroundColor(colors.black)
 AddButton(1,1,1,1, function() rednet.broadcast("stop_rain") end)
 
 while true do
