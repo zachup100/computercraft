@@ -10,4 +10,8 @@ function GetModem()
   end
 end
 
-print("Found wireless modem port on \""..GetModem().."\"")
+local Modem = GetModem()
+if not Modem then error("Failed to identify wireless modem connections!") end
+local Methods = peripheral.getMethods(Modem)
+if not Methods.isWireless() then error("You cannot use a wired modem!") end
+print("Success")
