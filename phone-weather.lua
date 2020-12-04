@@ -43,12 +43,14 @@ term.setBackgroundColor(colors.black)
 AddButton("test1",1,1,3,3, function() rednet.broadcast("stop_rain") end)
 
 while true do
-  local Event, PosX, PosY = os.pullEvent("mouse_click")
-  for Button, Data in pairs(Buttons) do
-    local Within = WithinButton(Button,PosX,PosY)
-    if Within then
-      print(type(Data.func))
-      --Data.func()
+  local Event, Button, PosX, PosY = os.pullEvent("mouse_click")
+  if Button == 1 then
+    for Button, Data in pairs(Buttons) do
+      local Within = WithinButton(Button,PosX,PosY)
+      if Within then
+        print(type(Data.func))
+        --Data.func()
+      end
     end
   end
 end
