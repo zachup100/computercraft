@@ -17,6 +17,7 @@ function WithinButton(Title, X, Y)
   Title = tostring(Title)
   if type(Buttons[Title]) == "nil" then return false end
   local Data = Buttons[Title]
+
   if X >= Data.X and Y >= Data.Y and X <= Data.MX and Y <= Data.MY then return true end
   return false
 end
@@ -38,7 +39,7 @@ end
 
 term.setCursorPos(1,1)
 term.setBackgroundColor(colors.black)
-AddButton("test1",1,1,1,1, function() rednet.broadcast("stop_rain") end)
+print(AddButton("test1",1,1,3,3, function() rednet.broadcast("stop_rain") end))
 
 while true do
   local Event, PosX, PosY = os.pullEvent("mouse_click")
