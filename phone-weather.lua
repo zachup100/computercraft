@@ -40,13 +40,13 @@ for i=2,19,1 do
 end
 
 --// Stop Rain button
-term.setBackgroundColor(colors.gray)
+term.setBackgroundColor(colors.cyan)
 term.setCursorPos(3,4)
 for i=3,5 do
   term.setCursorPos(4,i)
   term.write((" "):rep(Width))
 end
-term.setCursorPos((Width/2)-5,4)
+term.setCursorPos((Width/2),4)
 term.write("Stop Rain")
 
 term.setCursorPos(1,1)
