@@ -25,7 +25,7 @@ end
 term.setBackgroundColor(colors.blue)
 for i=1,Height,1 do
   term.setCursorPos(1,i)
-  term.write((""):rep(Width))
+  term.write((" "):rep(Width))
 end
 
 --// Inner Background
