@@ -61,7 +61,7 @@ for i=7,9 do
   term.setCursorPos(4,i)
   term.write((" "):rep(Width))
 end
-term.setCursorPos((Width/1)-1,9)
+term.setCursorPos((Width/2),9)
 term.write("Morning")
 
 term.setCursorPos(1,1)
@@ -69,6 +69,22 @@ term.setBackgroundColor(colors.black)
 AddButton("morning",4,7,23,9, (function()
   print("R")
   rednet.send(REMOTE_ID,"morning")
+end))
+
+--// Goodnight button
+term.setBackgroundColor(colors.cyan)
+for i=11,13 do
+  term.setCursorPos(4,i)
+  term.write((" "):rep(Width))
+end
+term.setCursorPos((Width/2),9)
+term.write("Goodnight")
+
+term.setCursorPos(1,1)
+term.setBackgroundColor(colors.black)
+AddButton("goodnight",4,11,23,13, (function()
+  print("R")
+  rednet.send(REMOTE_ID,"goodnight")
 end))
 
 
