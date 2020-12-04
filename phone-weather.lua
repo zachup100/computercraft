@@ -57,7 +57,7 @@ end))
 
 --// Morning button
 term.setBackgroundColor(colors.cyan)
-for i=8,10 do
+for i=7,9 do
   term.setCursorPos(4,i)
   term.write((" "):rep(Width))
 end
@@ -66,7 +66,7 @@ term.write("Morning")
 
 term.setCursorPos(1,1)
 term.setBackgroundColor(colors.black)
-AddButton("morning",4,8,23,10, (function()
+AddButton("morning",4,7,23,9, (function()
   print("R")
   rednet.send(REMOTE_ID,"morning")
 end))
