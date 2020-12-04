@@ -5,7 +5,7 @@ term.clear()
 --// Draw
 term.setBackgroundColor(colors.lightBlue)
 term.setCursorPos(3,3)
-for i = 3, 24 do
+for i = 3, 22 do
   term.setCursorPos(3,i)
-  term.write((" "):rep(16))
+  term.write((" "):rep(20))
 end
