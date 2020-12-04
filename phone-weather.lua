@@ -46,8 +46,8 @@ for i=3,5 do
   term.setCursorPos(4,i)
   term.write((" "):rep(Width))
 end
-term.setCursorPos((Width/2),4)
-term.write("Stop Rain")
+term.setCursorPos((Width/2)-1,4)
+term.write("Stop  Rain")
 
 term.setCursorPos(1,1)
 term.setBackgroundColor(colors.black)
