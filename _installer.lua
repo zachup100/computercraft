@@ -21,13 +21,13 @@ else
   term.write("Loaded APIs.")
   term.setCursorPos(1,4)
   term.write("Obtaining GitHub Repository Info...")
-  term.setCursorPos(1,5)
+  term.setCursorPos(1,6)
   local Connection = http.get(string.format("https://api.github.com/repos/%s/%s/git/trees/master?recursive=1",Author,Repository))
   local Contents = json.parseValue(Connection.readAll())
   if not Connection then error("Author or Repository does not exist.") end
   Connection.close()
   term.write("Writing GitHub Repository data to Computer...")
-  term.setCursorPos(1,6)
+  term.setCursorPos(1,7)
   for _, File in pairs(Contents.tree) do
     local Connection = http.get(string.format("https://raw.githubusercontent.com/%s/%s/master/%s",Author,Repository,File.path))
     local Handle = fs.open(File.path,"w")
