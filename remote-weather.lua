@@ -16,6 +16,18 @@ function StopRain()
   redstone.setOutput("top",false)
 end
 
+function Morning()
+  redstone.setOutput("left",true)
+  sleep(0.1)
+  redstone.setOutput("left",false)
+end
+
+function Goodnight()
+  redstone.setOutput("right",true)
+  sleep(0.1)
+  redstone.setOutput("right",false)
+end
+
 term.clear()
 term.setCursorPos(1,1)
 local Modem = GetModem()
@@ -31,5 +43,9 @@ while true do
   print("Command received:",Message)
   if Message == "stop_rain" then
     StopRain()
+  elseif Message == "morning" then
+      Morning()
+  elseif Message == "goodnight" then
+      Goodnight()
   end
 end

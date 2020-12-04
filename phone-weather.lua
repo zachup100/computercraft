@@ -41,7 +41,6 @@ end
 
 --// Stop Rain button
 term.setBackgroundColor(colors.cyan)
-term.setCursorPos(3,4)
 for i=3,5 do
   term.setCursorPos(4,i)
   term.write((" "):rep(Width))
@@ -54,6 +53,22 @@ term.setBackgroundColor(colors.black)
 AddButton("test1",4,3,23,5, (function()
   print("R")
   rednet.send(REMOTE_ID,"stop_rain")
+end))
+
+--// Morning button
+term.setBackgroundColor(colors.cyan)
+for i=8,10 do
+  term.setCursorPos(4,i)
+  term.write((" "):rep(Width))
+end
+term.setCursorPos((Width/2)-1,9)
+term.write("Morning")
+
+term.setCursorPos(1,1)
+term.setBackgroundColor(colors.black)
+AddButton("test1",4,8,23,10, (function()
+  print("R")
+  rednet.send(REMOTE_ID,"morning")
 end))
 
 
