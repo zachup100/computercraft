@@ -54,6 +54,8 @@ AddButton("test1",1,1,3,3, (function()
   rednet.send(REMOTE_ID,"stop_rain")
 end))
 
+
+
 while true do
   local Event, Button, PosX, PosY = os.pullEvent("mouse_click")
   if Button == 1 then
