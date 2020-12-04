@@ -2,15 +2,6 @@ local StartupParameters = {...}
 local FarmSize = {X=(tonumber(StartupParameters[1]) or 2),Z=(tonumber(StartupParameters[1]) or 2)}
 
 
-
-
-
-
-
-
-
-
-
 local Parameters = {...}
 local SizeX, SizeZ = tonumber(Parameters[1]) or 4, tonumber(Parameters[2]) or 4
 local Heading = 0
