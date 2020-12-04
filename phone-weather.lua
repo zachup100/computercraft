@@ -33,7 +33,7 @@ term.setBackgroundColor(colors.lightBlue)
 term.setCursorPos(2,2)
 for i=2,19,1 do
   term.setCursorPos(2,i)
-  term.write((" "):rep(19))
+  term.write((" "):rep(Width+5))
 end
 
 AddButton(1,1,1,1, function() rednet.broadcast("stop_rain") end)
