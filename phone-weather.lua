@@ -45,11 +45,10 @@ AddButton("test1",1,1,3,3, function() rednet.broadcast("stop_rain") end)
 while true do
   local Event, PosX, PosY = os.pullEvent("mouse_click")
   for Button, Data in pairs(Buttons) do
-    print("Clicked at X "..PosX.." Y "..PosY)
     local Within = WithinButton(Button,PosX,PosY)
-    print("Withn:",Within)
     if Within then
-      Data.func()
+      print(type(Data.func))
+      --Data.func()
     end
   end
 end
