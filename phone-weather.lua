@@ -33,7 +33,7 @@ term.setBackgroundColor(colors.lightBlue)
 term.setCursorPos(2,2)
 for i=2,19,1 do
   term.setCursorPos(2,i)
-  term.write((" "):rep(Width+5))
+  term.write((" "):rep(Width+4))
 end
 
 term.setBackgroundColor(colors.black)
