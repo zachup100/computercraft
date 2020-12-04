@@ -49,7 +49,7 @@ end
 
 term.setCursorPos(1,1)
 term.setBackgroundColor(colors.black)
-AddButton("test1",4,3,Width,5, (function()
+AddButton("test1",4,3,22,5, (function()
   print("Running function")
   rednet.send(REMOTE_ID,"stop_rain")
 end))
