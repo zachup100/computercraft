@@ -1,5 +1,6 @@
 local Height, Width = term.getSize()
 if Height ~= 26 or Width ~= 20 then error("This program can only run on a pocket computer.") end
+local REMOTE_ID = 30
 rednet.open("back")
 term.clear()
 
@@ -39,11 +40,18 @@ for i=2,19,1 do
   term.write((" "):rep(Width+4))
 end
 
+--// Stop Rain button
+term.setBackgroundColor(colors.gray)
+term.setCursorPos(3,4)
+for i=1,3 do
+  term.write((" "):rep(Width))
+end
+
 term.setCursorPos(1,1)
 term.setBackgroundColor(colors.black)
 AddButton("test1",1,1,3,3, (function()
   print("Running function")
-  rednet.broadcast("stop_rain")
+  rednet.send(REMOTE_ID,"stop_rain")
 end))
 
 while true do
