@@ -3,6 +3,7 @@ function GetModem()
   for _, Port in pairs(Connections) do
     local Methods = peripheral.getMethods(Port)
     for _, func in pairs(Methods) do
+      print(func)
       if func == "isWireless" and Methods.isWireless() == true then
         return tostring(Port)
       end
