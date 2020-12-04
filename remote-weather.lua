@@ -9,3 +9,5 @@ function GetModem()
     end
   end
 end
+
+print(GetModem())
