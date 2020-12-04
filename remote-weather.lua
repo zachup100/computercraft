@@ -23,11 +23,13 @@ if not Modem then error("Failed to identify wireless modem connections!") end
 local Methods = peripheral.wrap(Modem)
 if not Methods.isWireless() then error("You cannot use a wired modem!") end
 rednet.open(Modem)
-print("Listening for commands.")
+
+print("Started Listener.")
 while true do
-  Id, Message = rednet.receive()
+  Id, Message, Protocol = os.pullEvent("rednet_message")
+  Message = string.lower(tostring(Message))
+  print("Command received:",Message)
   if Message == "stop_rain" then
-    print("rain_command")
     StopRain()
   end
 end
