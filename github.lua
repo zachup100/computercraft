@@ -19,7 +19,7 @@ function GetRepositoryInfo()
 end
 
 function GetFileContents(path)
-  local Success, http.get(string.format(CONTENT_URL..path))
+  local Success = http.get(string.format(CONTENT_URL..path))
   if Success then
       local Contents = Success.readAll()
       Success.close()
@@ -27,7 +27,7 @@ function GetFileContents(path)
   end
   return false
 end
-
+print(type(Author),type(Repository))
 if type(Author) ~= "string" or type(Repository) ~= "string" then
   term.clear()
   term.setCursorPos(1,1)
