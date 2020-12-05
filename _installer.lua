@@ -30,11 +30,15 @@ else
   term.setCursorPos(1,7)
   for _, File in pairs(Contents.tree) do
     local Connection = http.get(string.format("https://raw.githubusercontent.com/%s/%s/master/%s",Author,Repository,File.path))
-    local Handle = fs.open(File.path,"w")
-    if Connection and Handle then
-      Handle.write(Connection.readAll())
-      Handle.close()
-      Connection.close()
+    if File.size ~= nil then
+      local Handle = fs.open(File.path,"w")
+      if Connection and Handle then
+        Handle.write(Connection.readAll())
+        Handle.close()
+        Connection.close()
+      end
+    else
+      shell.run("mkdir", File.path)
     end
   end
   fs.delete("temporary")
