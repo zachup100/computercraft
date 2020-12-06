@@ -1,5 +1,6 @@
 --//
 --// Github Content Fetcher by zachup100
+--// https://pastebin.com/mvEWLReZ
 --//
 --// JSON Library by ElvishJerricco
 --// http://www.computercraft.info/forums2/index.php?/topic/5854-json-api-v201-for-computercraft/
@@ -20,14 +21,28 @@ local function split(input, sep)
   return rtn
 end
 
-if WritePath ~= "/" then
-  local RawPath = split(Parameters[4], "/")
-  for a,b in pairs(RawPath) do
-    print(a,"\""..b.."\"")
+local function makedir(path)
+  if not fs.exists(path) or fs.exists(path) and not fs.isDir(path) then
+    shell.run("mkdir", path)
   end
 end
 
-
+if WritePath ~= "/" then
+  local RawPath = split(Parameters[4], "/")
+  if #RawPath == 0 then
+    WritePath = "/"
+  elseif #RawPath == 1 then
+    WritePath = "/"..RawPath[1].."/"
+    makedir(WritePath)
+  else
+    WritePath = "/"
+    for _, dir in ipairs(RawPath) do
+      WritePath = WritePath .. "/"..dir
+    end
+    WritePath = WritePath .. "/"
+    makedir(WritePath)
+  end
+end
 
 if type(Author) ~= "string" or type(Repository) ~= "string" then
   print(string.format("%s: <Author> <Repository> [Branch:Auto] [Path]", shell.getRunningProgram()))
@@ -47,12 +62,15 @@ end
 
 local GIT_INFO_URL = string.format("https://api.github.com/repos/%s/%s/git/trees/%s?recursive=1", Author, Repository, Branch)
 local CONTENT_URL = string.format("https://raw.githubusercontent.com/%s/%s/%s/", Author, Repository, Branch)
-os.loadAPI("apis/json.lua")
+if not os.loadAPI("apis/json.lua") then
+  print(string.format("%s: Failed to load json library", shell.getRunningProgram()))
+  return
+end
 
 local function HttpGet(URL)
   local Success = http.get(URL)
   if Success then
-    local Contents = json.parseValue(Success.readAll())
+    local Contents = Success.readAll()
     Success.close()
     return true, Contents
   end
@@ -64,21 +82,21 @@ function GetFileContents(path) return HttpGet(CONTENT_URL..path) end
 
 local Success, Contents = GetRepositoryInfo()
 if Success then
+  Contents = json.parseValue(Contents)
   for _, Info in ipairs(Contents.tree) do
     if Info.type == "blob" then
-      print(string.format("Adding File: %s", Info.path))
       local Success, Data = GetFileContents(Info.path)
-      local File = fs.open(Info.path,"w")
+      local File = fs.open(WritePath..Info.path,"w")
       if Success and File then
+        print(string.format("Writing: %s", Info.path))
         File.write(Data)
         File.close()
       end
     elseif Info.type == "tree" then
-      print(string.format("Checking for Directory: %s", Info.path))
-      if not fs.exists(Info.path) or (fs.exists(Info.path) and not fs.isDir(Info.path)) then
-        print(string.format("Creating Directory: %s", Info.path))
-        shell.run("mkdir", Info.path)
-      end
+      makedir(WritePath..Info.path)
+      --if not fs.exists(Info.path) or (fs.exists(Info.path) and not fs.isDir(Info.path)) then
+      --  print(string.format("Creating Directory: %s", Info.path))
+      --end
     end
   end
   print(string.format("%s: File downloads completed.", shell.getRunningProgram()))
