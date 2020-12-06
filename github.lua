@@ -20,12 +20,12 @@ end
 
 local GIT_INFO_URL = string.format("https://api.github.com/repos/%s/%s/git/trees/%s?recursive=1", Author, Repository, Branch)
 local CONTENT_URL = string.format("https://raw.githubusercontent.com/%s/%s/%s/", Author, Repository, Branch)
-local JSON = os.loadAPI("apis/json.lua")
+os.loadAPI("apis/json.lua")
 
 local function HttpGet(URL)
   local Success = http.get(URL)
   if Success then
-    local Contents = JSON.parseValue(Success.readAll())
+    local Contents = json.parseValue(Success.readAll())
     Success.close()
     return true, Contents
   end
@@ -38,15 +38,15 @@ function GetFileContents(path) return HttpGet(CONTENT_URL..path) end
 local Success, Contents = GetRepositoryInfo()
 if Success then
   for _, Info in ipairs(Contents.tree) do
-    if Info.size then
+    if Info.type == "blob" then
       local Success, Data = GetFileContents(Info.path)
       local File = fs.open(Info.path,"w")
       if Success and File then
         File.write(Data)
         File.close()
       end
-    else
-      if not fs.exists(File.path) or fs.exists(File.path) and not fs.isDir(File.path) githubusercontent
+    elseif Info.type == "tree" then
+      if not fs.exists(File.path) or fs.exists(File.path) and not fs.isDir(File.path) then
         shell.run("mkdir", File.path)
       end
     end
