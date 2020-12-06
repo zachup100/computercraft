@@ -14,8 +14,11 @@ if not fs.exists("apis") or fs.exists("apis") and not fs.isDir("apis") then shel
 shell.run("pastebin", "get", "4nRg9CHU", "apis/json.lua")
 
 if not fs.exists("apis/json.lua") then
-  print(string.format("%s: Failed to download json library", shell.getRunningProgram()))
-  return
+  shell.run("pastebin", "get", "4nRg9CHU", "apis/json.lua")
+  if not fs.exists("apis/json.lua") then
+    print(string.format("%s: Failed to download json library", shell.getRunningProgram()))
+    return
+  end
 end
 
 local GIT_INFO_URL = string.format("https://api.github.com/repos/%s/%s/git/trees/%s?recursive=1", Author, Repository, Branch)
