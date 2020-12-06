@@ -1,9 +1,33 @@
+--//
+--// Github Content Fetcher by zachup100
+--//
+--// JSON Library by ElvishJerricco
+--// http://www.computercraft.info/forums2/index.php?/topic/5854-json-api-v201-for-computercraft/
+--//
+
 local Parameters = {...}
 
 local Author = Parameters[1]
 local Repository = Parameters[2]
 local Branch = string.lower((type(Parameters[3])=="string" and Parameters[3]) or "master")
 if Branch == "auto" then Branch = "master" end
+local WritePath = Parameters[4] or "/"
+
+local function split(input, sep)
+  if not sep then sep = "%s" end
+  local rtn = {}
+  for str in string.gmatch(input, "([^"..sep.."]+)") do table.insert(rtn, str) end
+  return rtn
+end
+
+if WritePath ~= "/" then
+  local RawPath = split(Parameters[4], "/")
+  for a,b in pairs(RawPath) do
+    print(a,"\""..b.."\"")
+  end
+end
+
+
 
 if type(Author) ~= "string" or type(Repository) ~= "string" then
   print(string.format("%s: <Author> <Repository> [Branch:Auto] [Path]", shell.getRunningProgram()))
