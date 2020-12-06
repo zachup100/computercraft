@@ -22,8 +22,8 @@ local GIT_INFO_URL = string.format("https://api.github.com/repos/%s/%s/git/trees
 local CONTENT_URL = string.format("https://raw.githubusercontent.com/%s/%s/%s/", Author, Repository, Branch)
 local JSON = os.loadAPI("apis/json.lua")
 
-function GetRepositoryInfo()
-  local Success = http.get(GIT_INFO_URL)
+local function HttpGet(URL)
+  local Success = http.get(URL)
   if Success then
     local Contents = JSON.parseValue(Success.readAll())
     Success.close()
@@ -32,14 +32,28 @@ function GetRepositoryInfo()
   return false
 end
 
-function GetFileContents(path)
-  local Success = http.get(string.format(CONTENT_URL..path))
-  if Success then
-      local Contents = JSON.parseValue(Success.readAll())
-      Success.close()
-      return true, Contents
-  end
-  return false
-end
+function GetRepositoryInfo() return HttpGet(GIT_INFO_URL) end
+function GetFileContents(path) return HttpGet(CONTENT_URL..path) end
 
-local Success, Files = GetRepositoryInfo()
+local Success, Contents = GetRepositoryInfo()
+if Success then
+  for _, Info in ipairs(Contents.tree) do
+    if Info.size then
+      local Success, Data = GetFileContents(Info.path)
+      local File = fs.open(Info.path,"w")
+      if Success and File then
+        File.write(Data)
+        File.close()
+      end
+    else
+      if not fs.exists(File.path) or fs.exists(File.path) and not fs.isDir(File.path) githubusercontent
+        shell.run("mkdir", File.path)
+      end
+    end
+  end
+  print(string.format("%s: File downloads completed.", shell.getRunningProgram()))
+  return
+else
+  print(string.format("%s: Failed to obtain repository info.", shell.getRunningProgram()))
+  return
+end
