@@ -50,8 +50,6 @@ if type(Author) ~= "string" or type(Repository) ~= "string" then
 end
 
 if not fs.exists("apis") or fs.exists("apis") and not fs.isDir("apis") then shell.run("mkdir", "apis") end
-shell.run("pastebin", "get", "4nRg9CHU", "apis/json.lua")
-
 if not fs.exists("apis/json.lua") then
   shell.run("pastebin", "get", "4nRg9CHU", "apis/json.lua")
   if not fs.exists("apis/json.lua") then
