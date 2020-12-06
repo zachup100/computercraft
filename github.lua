@@ -46,7 +46,7 @@ if Success then
         File.close()
       end
     elseif Info.type == "tree" then
-      if not fs.exists(File.path) or fs.exists(File.path) and not fs.isDir(File.path) then
+      if not fs.exists(File.path) or (fs.exists(File.path) and not fs.isDir(File.path)) then
         shell.run("mkdir", File.path)
       end
     end
