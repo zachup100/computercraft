@@ -1,1 +1,3 @@
-shell.run("_installer.lua", "zachup100", "computercraft-testing-repo-v1")
+shell.run("pastebin", "run", "Eky25aPJ", "zachup100", "computercraft", "master", "/")
+sleep(3)
+os.reboot()
