@@ -48,9 +48,9 @@ if Success then
       end
     elseif Info.type == "tree" then
       print(string.format("Checking for Directory: %s", Info.path))
-      if not fs.exists(File.path) or (fs.exists(File.path) and not fs.isDir(File.path)) then
+      if not fs.exists(Info.path) or (fs.exists(Info.path) and not fs.isDir(Info.path)) then
         print(string.format("Creating Directory: %s", Info.path))
-        shell.run("mkdir", File.path)
+        shell.run("mkdir", Info.path)
       end
     end
   end
