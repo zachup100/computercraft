@@ -1,3 +1,4 @@
+if not term.isColor() error("API can only be used on Advanced Terms / Monitors") end
 local Buttons = {}
 --Buttons[Title] = Table
 
@@ -63,3 +64,12 @@ function new(Title, X, Y, SizeX, SizeY, Function)
   Buttons[btn._Title] = btn
   return true, get(btn._Title)
 end
+
+local function EventListener()
+  while true do
+    local Event, Button, X, Y = os.pullEvent("mouse_click")
+    print("Click event")
+  end
+end
+
+coroutine.wrap(EventListener)()
