@@ -6,8 +6,6 @@ local Branch = string.lower((type(Parameters[3])=="string" and Parameters[3]) or
 if Branch == "auto" then Branch = "master" end
 
 if type(Author) ~= "string" or type(Repository) ~= "string" then
-  term.clear()
-  term.setCursorPos(1,1)
   print(string.format("%s: <Author> <Repository> [Branch:Auto] [Path]", shell.getRunningProgram()))
   return
 end
