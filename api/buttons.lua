@@ -1,4 +1,4 @@
-if not term.isColor() error("API can only be used on Advanced Terms / Monitors") end
+if not term.isColor() then error("API can only be used on Advanced Terms / Monitors") end
 local Buttons = {}
 --Buttons[Title] = Table
 
