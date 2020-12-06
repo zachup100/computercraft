@@ -1,1 +1,1 @@
-shell.run("_installer.lua", "zachup100", "computercraft-testing-repo-v1")
+pastebin run mvEWLReZ zachup100 computercraft master /
