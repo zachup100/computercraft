@@ -39,6 +39,7 @@ local Success, Contents = GetRepositoryInfo()
 if Success then
   for _, Info in ipairs(Contents.tree) do
     if Info.type == "blob" then
+      print(string.format("Adding File: %s", Info.path))
       local Success, Data = GetFileContents(Info.path)
       local File = fs.open(Info.path,"w")
       if Success and File then
@@ -46,7 +47,9 @@ if Success then
         File.close()
       end
     elseif Info.type == "tree" then
+      print(string.format("Checking for Directory: %s", Info.path))
       if not fs.exists(File.path) or (fs.exists(File.path) and not fs.isDir(File.path)) then
+        print(string.format("Creating Directory: %s", Info.path))
         shell.run("mkdir", File.path)
       end
     end
