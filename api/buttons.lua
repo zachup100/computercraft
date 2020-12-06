@@ -54,7 +54,6 @@ function new(Title, X, Y, SizeX, SizeY, Function)
       btn._Title = "Buttons"..tostring(Int)
       if type(Buttons[btn._Title]) == nil then
         Buttons[btn._Title] = {}
-        btn._Title
         break
       end
     end
