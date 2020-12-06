@@ -7,7 +7,6 @@
 --//
 
 local Parameters = {...}
-
 local Author = Parameters[1]
 local Repository = Parameters[2]
 local Branch = string.lower((type(Parameters[3])=="string" and Parameters[3]) or "master")
@@ -49,7 +48,7 @@ if type(Author) ~= "string" or type(Repository) ~= "string" then
   return
 end
 
-if not fs.exists("apis") or fs.exists("apis") and not fs.isDir("apis") then shell.run("mkdir", "apis") end
+makedir("apis")
 if not fs.exists("apis/json.lua") then
   shell.run("pastebin", "get", "4nRg9CHU", "apis/json.lua")
   if not fs.exists("apis/json.lua") then
@@ -86,15 +85,12 @@ if Success then
       local Success, Data = GetFileContents(Info.path)
       local File = fs.open(WritePath..Info.path,"w")
       if Success and File then
-        print(string.format("Writing: %s", Info.path))
         File.write(Data)
         File.close()
+        print(string.format("Saved  '%s'", Info.path))
       end
     elseif Info.type == "tree" then
       makedir(WritePath..Info.path)
-      --if not fs.exists(Info.path) or (fs.exists(Info.path) and not fs.isDir(Info.path)) then
-      --  print(string.format("Creating Directory: %s", Info.path))
-      --end
     end
   end
   print(string.format("%s: File downloads completed.", shell.getRunningProgram()))
