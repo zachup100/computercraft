@@ -4,8 +4,8 @@ local function GetInstallPath()
   return "/"..Program:sub(1, #Program-#Name)
 end
 
-local OUTLINE_COLOR = colors.blue
-local BACKGROUND_COLOR = colors.white
+local OUTLINE_COLOR = colors.gray
+local BACKGROUND_COLOR = colors.lightGray
 
 local ButtonsAPI = GetInstallPath().."/api/buttons.lua"
 if not pocket then error("This program can only run on pocket computers.") end
@@ -25,9 +25,15 @@ function DrawWindow()
   term.setBackgroundColor((type(BACKGROUND_COLOR)=="number" and BACKGROUND_COLOR) or colors.black)
   for i=2,Height-2,1 do
     term.setCursorPos(2,i)
-    term.write((" "):rep(Width-2))
+    term.write((" "):rep(Width-1))
   end
 end
+
+function DrawSun(X,Y)
+
+end
+
+function DrawMoon(X,Y)
 
 while true do
   DrawWindow()
