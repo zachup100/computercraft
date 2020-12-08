@@ -31,23 +31,31 @@ end
 
 function DrawSun(X,Y)
   for int=0,3,1 do
-    term.setCursorPos(X+int,Y+int)
+    term.setCursorPos(X,Y+int)
     term.setBackgroundColor(colors.orange)
-    term.write((" "):rep(4))
+    term.write((" "):rep(5))
   end
   for int=1,2,1 do
-    term.setCursorPos(X+int,Y+int)
+    term.setCursorPos(X+1,Y+int)
     term.setBackgroundColor(colors.yellow)
-    term.write("  ")
+    term.write("   ")
   end
 end
 
 function DrawMoon(X,Y)
-
+  for int=0,3,1 do
+    term.setCursorPos(X,Y+int)
+    term.setBackgroundColor(colors.black)
+    term.write((" "):rep(5))
+  end
 end
 
-while true do
-  DrawWindow()
-  DrawSun(3,3)
-  sleep(3)
+function Render()
+  while true do
+    DrawWindow()
+    DrawSun(3,3)
+    DrawMoon(6,3)
+  end
 end
+
+parallel.waitForAll(Render, buttons.listen)
