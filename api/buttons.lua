@@ -27,6 +27,7 @@ function new(Title, X, Y, Width, Height, Callback)
     if type(newCallback) == "function" then
       this.Callback = newCallback
     end
+    Buttons[Title] = this
     return this
   end
 
@@ -34,6 +35,7 @@ function new(Title, X, Y, Width, Height, Callback)
     newX, newY = ((type(X)=="number" and X) or this.Position.X), ((type(Y)=="number" and Y) or this.Position.Y)
     this.Position.X = newX
     this.Position.Y = newY
+    Buttons[Title] = this
     return this
   end
 
@@ -42,9 +44,11 @@ function new(Title, X, Y, Width, Height, Callback)
     for _, device in pairs(Supported) do
       if string.find(device, input) then
         this.Device = device
+        Buttons[Title] = this
         return this
       end
      end
+     Buttons[Title] = this
      return this
   end
 
@@ -52,11 +56,13 @@ function new(Title, X, Y, Width, Height, Callback)
     newX, newY = ((type(X)=="number" and X) or this.Size.X), ((type(Y)=="number" and Y) or this.Size.Y)
     this.Size.X = newX
     this.Size.Y = newY
+    Buttons[Title] = this
     return this
   end
 
   function this.setEnabled(bool)
     this.Enabled = ((type(bool)=="boolean" and bool) or this.Enabled)
+    Buttons[Title] = this
     return this
   end
 
@@ -80,7 +86,6 @@ function listen()
     local Event, Button, X, Y = os.pullEvent()
     local device = (Event=="mouse_click" and "terminal") or (Event=="monitor_touch" and "monitor")
     if device then
-
       for Title, Data in pairs(Buttons) do
         if Data.getDevice() == device then
           if Data.ClickedEvent(X, Y) then
@@ -88,7 +93,6 @@ function listen()
           end
         end
       end
-
     end
   end
 end
