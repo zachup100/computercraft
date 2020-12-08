@@ -35,6 +35,8 @@ end
 
 function DrawMoon(X,Y)
 
+end
+
 while true do
   DrawWindow()
   sleep(3)
