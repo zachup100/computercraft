@@ -68,7 +68,7 @@ end
 local function EventListener()
   while true do
     print("Listening")
-    local Event, Button, X, Y = os.pullEvent("mouse_click")
+    local Event, Button, X, Y = os.pullEvent()
     print("Click event")
   end
 end
