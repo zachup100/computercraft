@@ -63,10 +63,11 @@ function DrawMoon(X,Y)
 end
 
 function Render()
-  while sleep(1) do
+  while true do
     DrawWindow()
     DrawSun(3,3)
     DrawMoon(10,3)
+    sleep(1)
   end
 end
 
