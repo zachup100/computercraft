@@ -17,7 +17,7 @@ local DisabledButton = buttons.new("DisabledButton", 1,1,5,5)
 DisabledButton.setDevice("terminal")
 DisabledButton.setCallback(function()
   print("Disabling")
-  Disabling.setEnabled(false)
+  DisabledButton.setEnabled(false)
 end)
 
 parallel.waitForAll(buttons.listen)
