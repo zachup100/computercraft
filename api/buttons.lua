@@ -70,8 +70,6 @@ function new(Title, X, Y, Width, Height, Callback)
     if this.Enabled ~= true then return false end
     local PosX, PosY = this.getPosition()
     local SizeX, SizeY = this.getSize()
-    print(PosX,PosY)
-    print(SizeX,SizeY)
     local EndX, EndY = PosX+SizeX, PosY+SizeY
     if X >= PosX and Y >= PosY and X <= EndX and Y <= EndY then return true end
     return false
