@@ -1,6 +1,6 @@
 --//
 --// Github Content Fetcher by zachup100
---// https://pastebin.com/mvEWLReZ
+--// https://pastebin.com/Eky25aPJ
 --//
 --// JSON Library by ElvishJerricco
 --// http://www.computercraft.info/forums2/index.php?/topic/5854-json-api-v201-for-computercraft/
@@ -87,7 +87,7 @@ if Success then
       if Success and File then
         File.write(Data)
         File.close()
-        print(string.format("Saved  '%s'", Info.path))
+        print(string.format("Saved '%s'", Info.path))
       end
     elseif Info.type == "tree" then
       makedir(WritePath..Info.path)
