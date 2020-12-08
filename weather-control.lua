@@ -23,9 +23,9 @@ function DrawWindow()
   end
   --// Background
   term.setBackgroundColor((type(BACKGROUND_COLOR)=="number" and BACKGROUND_COLOR) or colors.black)
-  for i=2,Height-2,1 do
+  for i=2,Height-1,1 do
     term.setCursorPos(2,i)
-    term.write((" "):rep(Width-1))
+    term.write((" "):rep(Width-2))
   end
 end
 
