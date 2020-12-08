@@ -20,6 +20,25 @@ local function split(input, sep)
   return rtn
 end
 
+local IgnoreFiles = {
+  "readme",
+  ".gitignore",
+  ".git"
+}
+
+local function isFileIgnored(input)
+  input = string.lower(input)
+  for _, str in pairs(IgnoreFiles) do
+    if input == str then return true end
+  end
+  return false
+end
+
+local function getFileName(input)
+  local tbl = split(input, "/")
+  return tbl[#tbl]
+end
+
 local function makedir(path)
   if not fs.exists(path) or fs.exists(path) and not fs.isDir(path) then
     shell.run("mkdir", path)
@@ -81,7 +100,7 @@ local Success, Contents = GetRepositoryInfo()
 if Success then
   Contents = json.parseValue(Contents)
   for _, Info in ipairs(Contents.tree) do
-    if Info.type == "blob" then
+    if Info.type == "blob" and not isFileIgnored(getFileName(Info.path)) then
       local Success, Data = GetFileContents(Info.path)
       local File = fs.open(WritePath..Info.path,"w")
       if Success and File then
