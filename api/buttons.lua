@@ -1,7 +1,7 @@
 local Buttons = {}
 local Supported = {"monitor","terminal"}
 
-function get(Title) if type(Buttons[Title]) == "table" then return Buttons[Title]] end end
+function get(Title) if type(Buttons[Title]) == "table" then return Buttons[Title] end end
 function new(Title, X, Y, Width, Height, Callback)
   if get(Title) then return end
   local this = {
