@@ -14,7 +14,7 @@ function new(Title, X, Y, Width, Height, Callback)
       Y = ((type(Height)=="number" and X) or 1)
     },
     Callback = (type(Callback)=="function" and Callback) or (function() return true end),
-    Device = "",
+    Device = "terminal",
     Enabled = true
   }
 
@@ -79,7 +79,9 @@ function listen()
 
       for Title, Data in pairs(Buttons) do
         if Data.getDevice() == device then
-          coroutine.wrap(Data.Callback)()
+          if Data.ClickedEvent(X, Y) then
+            coroutine.wrap(Data.Callback)()
+          end
         end
       end
 
