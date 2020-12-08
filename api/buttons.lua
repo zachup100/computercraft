@@ -67,10 +67,15 @@ end
 function listen()
   while true do
     local Event, Button, X, Y = os.pullEvent()
-    if Event == "mouse_click" then
-      print("Detected Mouse Click")
-    elseif Event == "monitor_touch" then
-      print("Detected Monitor Click")
+    local device = (Event=="mouse_click" and "terminal") or (Event=="monitor_touch" and "monitor")
+    if device then
+
+      for Title, Data in pairs(Buttons) do
+        if Data.getDevice() == device then
+          coroutine.wrap(Data.Callback)()
+        end
+      end
+
     end
   end
 end
