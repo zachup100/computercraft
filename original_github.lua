@@ -48,10 +48,10 @@ if type(Author) ~= "string" or type(Repository) ~= "string" then
   return
 end
 
-makedir("apis")
-if not fs.exists("apis/json.lua") then
-  shell.run("pastebin", "get", "4nRg9CHU", "apis/json.lua")
-  if not fs.exists("apis/json.lua") then
+makedir(WritePath.."api")
+if not fs.exists(WritePath.."api/json.lua") then
+  shell.run("pastebin", "get", "4nRg9CHU", WritePath.."api/json.lua")
+  if not fs.exists(WritePath.."api/json.lua") then
     print(string.format("%s: Failed to download json library", shell.getRunningProgram()))
     return
   end
@@ -59,7 +59,7 @@ end
 
 local GIT_INFO_URL = string.format("https://api.github.com/repos/%s/%s/git/trees/%s?recursive=1", Author, Repository, Branch)
 local CONTENT_URL = string.format("https://raw.githubusercontent.com/%s/%s/%s/", Author, Repository, Branch)
-if not os.loadAPI("apis/json.lua") then
+if not os.loadAPI(WritePath.."api/json.lua") then
   print(string.format("%s: Failed to load json library", shell.getRunningProgram()))
   return
 end
