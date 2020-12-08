@@ -48,13 +48,25 @@ function DrawMoon(X,Y)
     term.setBackgroundColor(colors.black)
     term.write((" "):rep(5))
   end
+  term.setCursorPos(X,Y)
+  term.setBackgroundColor(colors.white)
+  term.write((" "):rep(4))
+  term.setCursorPos(X,Y+1)
+  term.setBackgroundColor(colors.white)
+  term.write((" "):rep(3))
+  term.setCursorPos(X,Y+2)
+  term.setBackgroundColor(colors.white)
+  term.write((" "):rep(3))
+  term.setCursorPos(X,Y+3)
+  term.setBackgroundColor(colors.white)
+  term.write((" "):rep(4))
 end
 
 function Render()
-  while true do
+  while sleep(1) do
     DrawWindow()
     DrawSun(3,3)
-    DrawMoon(6,3)
+    DrawMoon(10,3)
   end
 end
 
