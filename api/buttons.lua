@@ -25,4 +25,5 @@ function new(Title, X, Y, Width, Height, Callback)
     return this
   end
 
+  return this
 end
