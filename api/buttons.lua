@@ -64,13 +64,3 @@ function new(Title, X, Y, SizeX, SizeY, Function)
   Buttons[btn._Title] = btn
   return true, get(btn._Title)
 end
-
-local function EventListener()
-  while true do
-    print("Listening")
-    local Event, Button, X, Y = os.pullEvent()
-    print("Click event")
-  end
-end
-
-coroutine.wrap(EventListener)()
