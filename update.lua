@@ -1,5 +1,5 @@
 local Parameters = {...}
-local Branch = string.lower((type(Parameters[1])=="string" and Parameters[3]) or "master")
+local Branch = string.lower((type(Parameters[1])=="string" and Parameters[1]) or "master")
 
 local function GetInstallPath()
   local Program = shell.getRunningProgram()
