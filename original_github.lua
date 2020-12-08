@@ -1,6 +1,6 @@
 --//
 --// Github Content Fetcher by zachup100
---// https://pastebin.com/mvEWLReZ
+--// https://pastebin.com/Eky25aPJ
 --//
 --// JSON Library by ElvishJerricco
 --// http://www.computercraft.info/forums2/index.php?/topic/5854-json-api-v201-for-computercraft/
@@ -18,6 +18,25 @@ local function split(input, sep)
   local rtn = {}
   for str in string.gmatch(input, "([^"..sep.."]+)") do table.insert(rtn, str) end
   return rtn
+end
+
+local IgnoreFiles = {
+  "readme",
+  ".gitignore",
+  ".git"
+}
+
+local function isFileIgnored(input)
+  input = string.lower(input)
+  for _, str in pairs(IgnoreFiles) do
+    if input == str then return true end
+  end
+  return false
+end
+
+local function getFileName(input)
+  local tbl = split(input, "/")
+  return tbl[#tbl]
 end
 
 local function makedir(path)
@@ -48,10 +67,10 @@ if type(Author) ~= "string" or type(Repository) ~= "string" then
   return
 end
 
-makedir("apis")
-if not fs.exists("apis/json.lua") then
-  shell.run("pastebin", "get", "4nRg9CHU", "apis/json.lua")
-  if not fs.exists("apis/json.lua") then
+makedir(WritePath.."api")
+if not fs.exists(WritePath.."api/json.lua") then
+  shell.run("pastebin", "get", "4nRg9CHU", WritePath.."api/json.lua")
+  if not fs.exists(WritePath.."api/json.lua") then
     print(string.format("%s: Failed to download json library", shell.getRunningProgram()))
     return
   end
@@ -59,7 +78,7 @@ end
 
 local GIT_INFO_URL = string.format("https://api.github.com/repos/%s/%s/git/trees/%s?recursive=1", Author, Repository, Branch)
 local CONTENT_URL = string.format("https://raw.githubusercontent.com/%s/%s/%s/", Author, Repository, Branch)
-if not os.loadAPI("apis/json.lua") then
+if not os.loadAPI(WritePath.."api/json.lua") then
   print(string.format("%s: Failed to load json library", shell.getRunningProgram()))
   return
 end
@@ -81,13 +100,13 @@ local Success, Contents = GetRepositoryInfo()
 if Success then
   Contents = json.parseValue(Contents)
   for _, Info in ipairs(Contents.tree) do
-    if Info.type == "blob" then
+    if Info.type == "blob" and not isFileIgnored(getFileName(Info.path)) then
       local Success, Data = GetFileContents(Info.path)
       local File = fs.open(WritePath..Info.path,"w")
       if Success and File then
         File.write(Data)
         File.close()
-        print(string.format("Saved  '%s'", Info.path))
+        print(string.format("Saved '%s'", Info.path))
       end
     elseif Info.type == "tree" then
       makedir(WritePath..Info.path)
