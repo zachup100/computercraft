@@ -49,9 +49,9 @@ function new(Title, X, Y, Width, Height, Callback)
 end
 
 function get(Title)
-  return Buttosn[Title]
+  return Buttons[Title]
 end
 
 function listen()
-  
+
 end
