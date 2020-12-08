@@ -30,7 +30,16 @@ function DrawWindow()
 end
 
 function DrawSun(X,Y)
-
+  for int=0,3,1 do
+    term.setCursorPos(X+int,Y+int)
+    term.setBackgroundColor(colors.orange)
+    term.write((" "):rep(4))
+  end
+  for int=1,2,1 do
+    term.setCursorPos(X+int,Y+int)
+    term.setBackgroundColor(colors.yellow)
+    term.write("  ")
+  end
 end
 
 function DrawMoon(X,Y)
@@ -39,5 +48,6 @@ end
 
 while true do
   DrawWindow()
+  DrawSun(3,3)
   sleep(3)
 end
