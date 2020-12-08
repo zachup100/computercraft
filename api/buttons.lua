@@ -63,6 +63,7 @@ function new(Title, X, Y, Width, Height, Callback)
   function this.ClickedEvent(X, Y)
     if this.Enabled ~= true then return false end
     local pX,pY,sX,sY = this.getPosition(), this.getSize()
+    print(pX,pY,sX,sY)
     if X >= pX and Y >= pY and X <= (pX+sX) and Y <= (pY+sY) then return true end
     return false
   end
