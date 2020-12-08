@@ -1,4 +1,4 @@
-function new(Title, X, Y, Width Height, Callback)
+function new(Title, X, Y, Width, Height, Callback)
   local this = {
     Position = {
       X = ((type(X)=="number" and X) or 1),
