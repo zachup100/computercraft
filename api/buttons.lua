@@ -23,6 +23,13 @@ function new(Title, X, Y, Width, Height, Callback)
   function this.isEnabled() return this.Enabled end
   function this.getDevice() return this.Device end
 
+  function this.setCallback(newCallback)
+    if type(newCallback) == "function" then
+      this.Callback = newCallback
+    end
+    return this
+  end
+
   function this.setPosition(X, Y)
     newX, newY = ((type(X)=="number" and X) or this.Position.X), ((type(Y)=="number" and Y) or this.Position.Y)
     this.Position.X = newX
