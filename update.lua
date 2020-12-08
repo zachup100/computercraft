@@ -4,7 +4,6 @@ local function GetInstallPath()
   return "/"..Program:sub(1, #Program-#Name)
 end
 
-print(GetInstallPath())
-shell.run("pastebin", "run", "Eky25aPJ", "zachup100", "computercraft", "master", "/")
+shell.run("pastebin", "run", "Eky25aPJ", "zachup100", "computercraft", "master", GetInstallPath())
 sleep(3)
 os.reboot()
